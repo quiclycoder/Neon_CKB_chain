@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Organization {
+  id                 String                @id @default(uuid())
+  name               String
+  email              String                @unique
+  did                String?               @unique
+  verificationStatus VerificationStatus    @default(UNVERIFIED)
+  createdAt          DateTime              @default(now())
+  updatedAt          DateTime              @updatedAt
+  credentials        Credential[]
+  verificationRequests VerificationRequest[]
+}
+
+model Credential {
+  id             String   @id @default(uuid())
+  title          String
+  description    String
+  recipientName  String
+  recipientEmail String
+  cotaId         String?  @unique
+  ipfsHash       String?
+  issuerId       String
+  issuer         Organization @relation(fields: [issuerId], references: [id])
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model VerificationRequest {
+  id        String           @id @default(uuid())
+  type      VerificationType
+  status    RequestStatus    @default(PENDING)
+  data      Json?
+  orgId     String
+  organization Organization  @relation(fields: [orgId], references: [id])
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+}
+
+enum VerificationStatus {
+  UNVERIFIED
+  TWITTER
+  WEBSITE
+  KYC
+}
+
+enum VerificationType {
+  TWITTER
+  WEBSITE
+  KYC
+}
+
+enum RequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
