@@ -1,0 +1,128 @@
+.section {
+    background: var(--background);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.badge {
+    display: inline-block;
+    background: rgba(39, 48, 110, 0.2);
+    color: var(--secondary);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.techGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 5rem;
+}
+
+.techCard {
+    position: relative;
+    overflow: hidden;
+}
+
+.techCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+}
+
+.category {
+    display: inline-block;
+    background: rgba(39, 48, 110, 0.3);
+    color: var(--muted);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+}
+
+.techCard h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.techCard p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.considerationsSection {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 3rem;
+}
+
+.considerationsTitle {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 1.5rem;
+}
+
+.considerationsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.considerationCard {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.considerationIcon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.considerationCard h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.considerationCard p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+    .techGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .considerationsGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .techGrid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,143 @@
+.section {
+    background: var(--background);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.badge {
+    display: inline-block;
+    background: rgba(39, 48, 110, 0.2);
+    color: var(--secondary);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.stepsContainer {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 6rem;
+}
+
+.timeline {
+    position: absolute;
+    top: 30px;
+    left: 15%;
+    right: 15%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+}
+
+.step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.stepNumber {
+    width: 60px;
+    height: 60px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 30px rgba(39, 48, 110, 0.5);
+}
+
+.stepContent {
+    max-width: 280px;
+}
+
+.stepIcon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.stepContent h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.stepContent p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.verificationSection {
+    margin-top: 4rem;
+}
+
+.verificationTitle {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.75rem;
+}
+
+.verificationGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.verificationCard {
+    text-align: center;
+}
+
+.verificationCard h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.verificationCard p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.level {
+    display: inline-block;
+    background: rgba(0, 210, 255, 0.1);
+    color: var(--secondary);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 1024px) {
+    .stepsContainer {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .timeline {
+        display: none;
+    }
+
+    .verificationGrid {
+        grid-template-columns: 1fr;
+    }
+}
