@@ -85,7 +85,7 @@ export default function DashboardPage() {
 
                 <div className={styles.grid}>
                     {/* Left Column - Wallet & Stats */}
-                    <motion.div variants={itemVariants} className="space-y-8">
+                    <motion.div variants={itemVariants} className={styles.column}>
                         {/* Wallet Card */}
                         <div className={`${styles.card} ${styles.walletCard}`}>
                             <div className={styles.walletHeader}>
@@ -137,7 +137,7 @@ export default function DashboardPage() {
                     </motion.div>
 
                     {/* Right Column - Actions & Activity */}
-                    <motion.div variants={itemVariants} className="space-y-8">
+                    <motion.div variants={itemVariants} className={styles.column}>
                         {/* Quick Actions */}
                         <div>
                             <h2 className={styles.sectionTitle}>
