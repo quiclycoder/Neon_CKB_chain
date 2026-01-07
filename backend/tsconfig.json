@@ -20,5 +20,10 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false
-  }
+  },
+  "exclude": [
+    "src/organizations/**/*",
+    "src/verification/**/*",
+    "src/prisma/**/*"
+  ]
 }
