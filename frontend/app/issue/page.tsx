@@ -36,7 +36,7 @@ export default function IssueCredentialPage() {
         setIsSubmitting(true);
 
         try {
-            const response = await fetch('http://localhost:3000/credentials/issue', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/credentials/issue`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

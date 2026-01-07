@@ -35,7 +35,7 @@ export default function CredentialsPage() {
     React.useEffect(() => {
         const fetchCredentials = async () => {
             try {
-                const response = await fetch('http://localhost:3000/credentials');
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/credentials`);
                 if (response.ok) {
                     const data = await response.json();
                     setCredentials(data);

@@ -49,7 +49,7 @@ export default function DashboardPage() {
     React.useEffect(() => {
         const fetchStats = async () => {
             try {
-                const response = await fetch('http://localhost:3000/dashboard/stats');
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/dashboard/stats`);
                 if (response.ok) {
                     const data = await response.json();
                     setStats(data);
