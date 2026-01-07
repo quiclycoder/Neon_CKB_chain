@@ -6,8 +6,8 @@ export declare class VerificationService {
     private prisma;
     constructor(prisma: PrismaService);
     initiate(dto: InitiateVerificationDto): Promise<{
-        data: import("@prisma/client/runtime/client").JsonValue | null;
         id: string;
+        data: import("@prisma/client/runtime/client").JsonValue | null;
         createdAt: Date;
         updatedAt: Date;
         type: import(".prisma/client").$Enums.VerificationType;
