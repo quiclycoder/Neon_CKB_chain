@@ -6,20 +6,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.DashboardService = void 0;
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
-const dashboard_module_1 = require("./dashboard/dashboard.module");
-const credentials_module_1 = require("./credentials/credentials.module");
-let AppModule = class AppModule {
+let DashboardService = class DashboardService {
+    getStats() {
+        return {
+            activeCredentials: 3,
+            verifications: 12,
+            recentActivity: [
+                { id: 1, title: 'Credential Verified', time: '2 minutes ago' },
+                { id: 2, title: 'New Credential Issued', time: '1 hour ago' },
+                { id: 3, title: 'Profile Updated', time: '1 day ago' },
+            ],
+        };
+    }
 };
-exports.AppModule = AppModule;
-exports.AppModule = AppModule = __decorate([
-    (0, common_1.Module)({
-        imports: [dashboard_module_1.DashboardModule, credentials_module_1.CredentialsModule],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
-    })
-], AppModule);
-//# sourceMappingURL=app.module.js.map
+exports.DashboardService = DashboardService;
+exports.DashboardService = DashboardService = __decorate([
+    (0, common_1.Injectable)()
+], DashboardService);
+//# sourceMappingURL=dashboard.service.js.map

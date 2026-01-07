@@ -6,20 +6,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.CredentialsModule = void 0;
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
-const dashboard_module_1 = require("./dashboard/dashboard.module");
-const credentials_module_1 = require("./credentials/credentials.module");
-let AppModule = class AppModule {
+const credentials_service_1 = require("./credentials.service");
+const credentials_controller_1 = require("./credentials.controller");
+let CredentialsModule = class CredentialsModule {
 };
-exports.AppModule = AppModule;
-exports.AppModule = AppModule = __decorate([
+exports.CredentialsModule = CredentialsModule;
+exports.CredentialsModule = CredentialsModule = __decorate([
     (0, common_1.Module)({
-        imports: [dashboard_module_1.DashboardModule, credentials_module_1.CredentialsModule],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        controllers: [credentials_controller_1.CredentialsController],
+        providers: [credentials_service_1.CredentialsService],
     })
-], AppModule);
-//# sourceMappingURL=app.module.js.map
+], CredentialsModule);
+//# sourceMappingURL=credentials.module.js.map

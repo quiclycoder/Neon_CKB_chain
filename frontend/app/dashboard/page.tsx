@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { useRouter } from "next/navigation";
 import { ccc } from "@ckb-ccc/connector-react";
 import { motion, Variants } from "framer-motion";
 import {
@@ -16,11 +17,25 @@ import {
 } from "lucide-react";
 import styles from "./Dashboard.module.css";
 
+interface ActivityItem {
+    id: number;
+    title: string;
+    time: string;
+}
+
+interface DashboardStats {
+    activeCredentials: number;
+    verifications: number;
+    recentActivity: ActivityItem[];
+}
+
 export default function DashboardPage() {
+    const router = useRouter();
     const { wallet } = ccc.useCcc();
     const signer = ccc.useSigner();
     const [address, setAddress] = React.useState<string | null>(null);
     const [copied, setCopied] = React.useState(false);
+    const [stats, setStats] = React.useState<DashboardStats | null>(null);
 
     React.useEffect(() => {
         if (signer) {
@@ -30,6 +45,22 @@ export default function DashboardPage() {
             })();
         }
     }, [signer]);
+
+    React.useEffect(() => {
+        const fetchStats = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/dashboard/stats');
+                if (response.ok) {
+                    const data = await response.json();
+                    setStats(data);
+                }
+            } catch (error) {
+                console.error("Failed to fetch dashboard stats:", error);
+            }
+        };
+
+        fetchStats();
+    }, []);
 
     const copyAddress = () => {
         if (address) {
@@ -125,11 +156,11 @@ export default function DashboardPage() {
                             <h3 className={styles.sectionTitle}>Overview</h3>
                             <div className={styles.statsGrid}>
                                 <div className={styles.statItem}>
-                                    <p className={styles.statValue}>3</p>
+                                    <p className={styles.statValue}>{stats?.activeCredentials ?? "-"}</p>
                                     <p className={styles.statLabel}>Active Credentials</p>
                                 </div>
                                 <div className={styles.statItem}>
-                                    <p className={styles.statValue}>12</p>
+                                    <p className={styles.statValue}>{stats?.verifications ?? "-"}</p>
                                     <p className={styles.statLabel}>Verifications</p>
                                 </div>
                             </div>
@@ -146,16 +177,17 @@ export default function DashboardPage() {
                             </h2>
                             <div className={styles.actionsGrid}>
                                 {[
-                                    { icon: ShieldCheck, title: "View Credentials", desc: "Check your verified credentials", color: styles.textBlue, bg: styles.bgBlue },
-                                    { icon: PlusCircle, title: "Issue New", desc: "Create a new credential", color: styles.textPurple, bg: styles.bgPurple },
-                                    { icon: Settings, title: "Settings", desc: "Manage your account", color: styles.textGray, bg: styles.bgGray },
-                                    { icon: HelpCircle, title: "Support", desc: "Get assistance", color: styles.textPink, bg: styles.bgPink },
+                                    { icon: ShieldCheck, title: "View Credentials", desc: "Check your verified credentials", color: styles.textBlue, bg: styles.bgBlue, href: "/credentials" },
+                                    { icon: PlusCircle, title: "Issue New", desc: "Create a new credential", color: styles.textPurple, bg: styles.bgPurple, href: "/issue" },
+                                    { icon: Settings, title: "Settings", desc: "Manage your account", color: styles.textGray, bg: styles.bgGray, href: "/settings" },
+                                    { icon: HelpCircle, title: "Support", desc: "Get assistance", color: styles.textPink, bg: styles.bgPink, href: "/support" },
                                 ].map((action, index) => (
                                     <motion.button
                                         key={index}
                                         whileHover={{ scale: 1.02, y: -2 }}
                                         whileTap={{ scale: 0.98 }}
                                         className={styles.actionButton}
+                                        onClick={() => router.push(action.href)}
                                     >
                                         <div className={`${styles.actionIconWrapper} ${action.bg}`}>
                                             <action.icon size={24} className={action.color} />
@@ -184,19 +216,22 @@ export default function DashboardPage() {
                             </div>
 
                             <div className={styles.activityList}>
-                                {/* Placeholder Activity Items */}
-                                {[1, 2, 3].map((_, i) => (
-                                    <div key={i} className={styles.activityItem}>
-                                        <div className={styles.activityIcon}>
-                                            <div className={styles.activityDot} />
+                                {stats?.recentActivity ? (
+                                    stats.recentActivity.map((activity) => (
+                                        <div key={activity.id} className={styles.activityItem}>
+                                            <div className={styles.activityIcon}>
+                                                <div className={styles.activityDot} />
+                                            </div>
+                                            <div className={styles.activityContent}>
+                                                <p className={styles.activityTitle}>{activity.title}</p>
+                                                <p className={styles.activityTime}>{activity.time}</p>
+                                            </div>
+                                            <ExternalLink size={16} className={styles.textGray600} />
                                         </div>
-                                        <div className={styles.activityContent}>
-                                            <p className={styles.activityTitle}>Credential Verified</p>
-                                            <p className={styles.activityTime}>2 minutes ago</p>
-                                        </div>
-                                        <ExternalLink size={16} className={styles.textGray600} />
-                                    </div>
-                                ))}
+                                    ))
+                                ) : (
+                                    <p className="text-gray-500 text-sm">Loading activity...</p>
+                                )}
                             </div>
                         </div>
                     </motion.div>
@@ -205,3 +240,4 @@ export default function DashboardPage() {
         </div>
     );
 }
+

@@ -5,46 +5,46 @@ export declare class OrganizationsService {
     private prisma;
     constructor(prisma: PrismaService);
     create(createOrganizationDto: CreateOrganizationDto): import(".prisma/client").Prisma.Prisma__OrganizationClient<{
+        id: string;
         name: string;
         email: string;
         did: string | null;
-        id: string;
         verificationStatus: import(".prisma/client").$Enums.VerificationStatus;
         createdAt: Date;
         updatedAt: Date;
     }, never, import("@prisma/client/runtime/client").DefaultArgs, import(".prisma/client").Prisma.PrismaClientOptions>;
     findAll(): import(".prisma/client").Prisma.PrismaPromise<{
+        id: string;
         name: string;
         email: string;
         did: string | null;
-        id: string;
         verificationStatus: import(".prisma/client").$Enums.VerificationStatus;
         createdAt: Date;
         updatedAt: Date;
     }[]>;
     findOne(id: string): import(".prisma/client").Prisma.Prisma__OrganizationClient<{
+        id: string;
         name: string;
         email: string;
         did: string | null;
-        id: string;
         verificationStatus: import(".prisma/client").$Enums.VerificationStatus;
         createdAt: Date;
         updatedAt: Date;
     } | null, null, import("@prisma/client/runtime/client").DefaultArgs, import(".prisma/client").Prisma.PrismaClientOptions>;
     update(id: string, updateOrganizationDto: UpdateOrganizationDto): import(".prisma/client").Prisma.Prisma__OrganizationClient<{
+        id: string;
         name: string;
         email: string;
         did: string | null;
-        id: string;
         verificationStatus: import(".prisma/client").$Enums.VerificationStatus;
         createdAt: Date;
         updatedAt: Date;
     }, never, import("@prisma/client/runtime/client").DefaultArgs, import(".prisma/client").Prisma.PrismaClientOptions>;
     remove(id: string): import(".prisma/client").Prisma.Prisma__OrganizationClient<{
+        id: string;
         name: string;
         email: string;
         did: string | null;
-        id: string;
         verificationStatus: import(".prisma/client").$Enums.VerificationStatus;
         createdAt: Date;
         updatedAt: Date;
